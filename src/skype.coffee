@@ -1,11 +1,10 @@
 Readline = require 'readline'
 
-Robot    = require './hubot/src/robot'
-Adapter  = require './hubot/src/adapter'
+Robot   = require("hubot").robot()
+Adapter = require("hubot").adapter()
 
 class SkypeAdapter extends Adapter
   send: (user, strings...) ->
-    console.log "send"
     out = ""
     out = ("#{str}\n" for str in strings)
     json = JSON.stringify
@@ -25,8 +24,6 @@ class SkypeAdapter extends Adapter
     @skype = require('child_process').spawn('./skype.py')
     @skype.stdout.on 'data', (data) =>
         decoded = JSON.parse(data.toString())
-        console.log decoded
-
         user = self.userForName decoded.user
         unless user?
             id = (new Date().getTime() / 1000).toString().replace('.','')
