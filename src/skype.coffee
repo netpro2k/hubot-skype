@@ -1,7 +1,8 @@
 Readline = require 'readline'
 
-Robot   = require("hubot").robot()
-Adapter = require("hubot").adapter()
+Robot         = module.parent.parent.exports.Robot
+Adapter       = module.parent.parent.exports.Adapter
+TextMessage   = module.parent.parent.exports.TextMessage 
 
 class SkypeAdapter extends Adapter
   send: (user, strings...) ->
@@ -11,7 +12,6 @@ class SkypeAdapter extends Adapter
         room: user.room
         message: out.join('')
     @skype.stdin.write json + '\n'
-    @skype.stdin.flush()
 
   reply: (user, strings...) ->
     @send user, strings...
@@ -21,7 +21,7 @@ class SkypeAdapter extends Adapter
     stdin = process.openStdin()
     stdout = process.stdout
 
-    @skype = require('child_process').spawn('./skype.py')
+    @skype = require('child_process').spawn(__dirname + '/skype.py')
     @skype.stdout.on 'data', (data) =>
         decoded = JSON.parse(data.toString())
         user = self.userForName decoded.user
@@ -31,7 +31,7 @@ class SkypeAdapter extends Adapter
             user.name = decoded.user
         user.room = decoded.room
         return unless decoded.message
-        @receive new Robot.TextMessage user, decoded.message
+        @receive new TextMessage user, decoded.message
     @skype.stderr.on 'data', (data) =>
         console.log "ERR"
         console.log data.toString()
