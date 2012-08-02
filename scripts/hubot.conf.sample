@@ -1,0 +1,38 @@
+#Upstart script to start Hubot.  Place in /etc/init/hubot.conf
+#Be sure to change the env variables for your setup
+
+description "Hubot Skype bot"
+# NB - the job hubot-skype is configured to start just prior to this starting
+
+start on (net-device-up
+          and local-filesystems
+          and runlevel [2345])
+
+stop on runlevel [016]
+
+# Path to Hubot installation
+env HUBOT_DIR='/home/le-bott/hubot/'
+env HUBOT='bin/hubot'
+env ADAPTER='skype'
+# Name (and local user) to run Hubot as
+env HUBOT_USER='le-bott'
+# httpd listen port
+env PORT='5555'
+
+# Where is Skype running
+env DISPLAY="localhost:0"
+
+# Environment variables needed by scripts
+env HUBOT_AWS_ACCESS_KEY_ID="xxxxxxx"
+
+# Keep the process alive, limit to 5 restarts in 60s
+respawn
+respawn limit 5 60
+
+pre-start script
+  # delay whilst we wait for Skype to be ready
+  sleep 30s
+end script
+
+exec start-stop-daemon --start --chuid ${HUBOT_USER} --chdir ${HUBOT_DIR} \
+  --exec ${HUBOT_DIR}${HUBOT} -- --name ${HUBOT_USER} --adapter ${ADAPTER}
