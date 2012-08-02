@@ -14,7 +14,7 @@ def on_message(message, status):
         sys.stdout.write(json_string + '\n')
         sys.stdout.flush()
 
-s = Skype4Py.Skype()
+s = Skype4Py.Skype(Transport='x11')
 s.Attach()
 s.OnMessageStatus = on_message
 

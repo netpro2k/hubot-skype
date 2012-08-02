@@ -1,0 +1,13 @@
+#A sample upstart script to start Skype.  Place in /etc/init/hubot-skype.conf
+
+description "Headless skype for use by Hubot"
+
+start on (starting le-bott-hubot)
+stop on (stopped le-bott-hubot)
+
+# Environment variables 
+env DISPLAY="localhost:0"
+
+script
+   exec sudo -u le-bott xvfb-run -n 0 -s "-screen 0 800x600x16" /usr/bin/skype
+end script
