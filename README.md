@@ -21,6 +21,15 @@ on a Skype client running on the same machine as hubot. When you first
 launch hubot with the Skype adapter, Skype will prompt you to allow for
 API permission. You must allow this before the bot will work.
 
+## Configuring the Adapter
+
+* `HUBOT_SKYPE_TRANSPORT`
+
+### Skype Transport
+
+For Linux only. Name of a channel used to communicate with the Skype client.
+Currently supported values: `x11` (default), `dbus`. More information on [module page](http://skype4py.sourceforge.net/doc/html/Skype4Py.api.posix-module.html).
+
 ## Contribute
 
 Here's the most direct way to get your work merged into the project.
