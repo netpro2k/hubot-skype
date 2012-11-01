@@ -5,7 +5,7 @@ import json
 
 
 def on_message(message, status):
-    if status == Skype4Py.cmsReceived:
+    if status == Skype4Py.cmsReceived or status == Skype4Py.cmsSent:
         json_string = json.dumps({
             'user': message.Sender.Handle,
             'message': message.Body,
