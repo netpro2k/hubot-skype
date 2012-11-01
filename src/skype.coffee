@@ -1,7 +1,8 @@
 Readline = require 'readline'
 
-Robot   = require("hubot").robot()
-Adapter = require("hubot").adapter()
+Robot   = require("hubot").Robot
+Adapter = require("hubot").Adapter
+{TextMessage,EnterMessage,LeaveMessage,CatchAllMessage} = require '../../../src/message'
 
 class SkypeAdapter extends Adapter
   send: (user, strings...) ->
@@ -11,7 +12,6 @@ class SkypeAdapter extends Adapter
         room: user.room
         message: out.join('')
     @skype.stdin.write json + '\n'
-    @skype.stdin.flush()
 
   reply: (user, strings...) ->
     @send user, strings...
@@ -20,8 +20,12 @@ class SkypeAdapter extends Adapter
     self = @
     stdin = process.openStdin()
     stdout = process.stdout
-
-    @skype = require('child_process').spawn('./skype.py')
+    pyScriptPath = __dirname+'/skype.py'
+    if (process.platform == 'win32')
+        py = 'C:/Python27/python.exe'
+    else
+        py = './python'
+    @skype = require('child_process').spawn(py, [pyScriptPath])
     @skype.stdout.on 'data', (data) =>
         decoded = JSON.parse(data.toString())
         user = self.userForName decoded.user
@@ -31,7 +35,7 @@ class SkypeAdapter extends Adapter
             user.name = decoded.user
         user.room = decoded.room
         return unless decoded.message
-        @receive new Robot.TextMessage user, decoded.message
+        @receive new TextMessage user, decoded.message
     @skype.stderr.on 'data', (data) =>
         console.log "ERR"
         console.log data.toString()
