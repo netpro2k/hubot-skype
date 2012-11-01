@@ -7,7 +7,7 @@ to communicate with hubot through Skype.
 
 ## Installation
 
-* Add `hubot-skype` as a dependency in your hubot's `package.json`
+* Add `hubot-skype` as a dependency in your hubot's `package.json` (use this repository url as the version)
 * Install dependencies with `npm install`
 * Install Python dependancy `Skype4py` with `pip` or `easy_install`
 * Log into a Skype client on the same machine you are running hubot
