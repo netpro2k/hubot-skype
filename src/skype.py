@@ -1,7 +1,16 @@
 #!/usr/bin/python
-import Skype4Py
 import sys
 import json
+try:
+    import Skype4Py
+except ImportError, e:
+    sys.stderr.write("""
+It seems you have not yet installed Skype4Py. Install by running:
+sudo easy_install Skype4Py
+or
+sudo pip install Skype4Py
+        """)
+    exit(1)
 
 
 def on_message(message, status):

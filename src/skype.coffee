@@ -33,10 +33,10 @@ class SkypeAdapter extends Adapter
         return unless decoded.message
         @receive new TextMessage user, decoded.message
     @skype.stderr.on 'data', (data) =>
-        console.log "ERR"
-        console.log data.toString()
+        @robot.logger.error data.toString()
     @skype.on 'exit', (code) =>
-        console.log('child process exited with code ' + code)
+        @robot.logger.error "Lost connection with Skype... Exiting"
+        process.nextTick -> process.exit(1)
     @skype.on "uncaughtException", (err) =>
       @robot.logger.error "#{err}"
 
