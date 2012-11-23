@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import sys
 import json
+import os
 try:
     import Skype4Py
 except ImportError, e:
@@ -23,9 +24,13 @@ def on_message(message, status):
         sys.stdout.write(json_string + '\n')
         sys.stdout.flush()
 
-s = Skype4Py.Skype()
-s.Attach()
+if sys.platform.startswith('linux'):
+    s = Skype4Py.Skype(Transport=os.environ.get('HUBOT_SKYPE_TRANSPORT', 'x11'))
+else:
+    s = Skype4Py.Skype()
+
 s.OnMessageStatus = on_message
+s.Attach()
 
 while True:
     line = sys.stdin.readline()

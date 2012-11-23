@@ -21,7 +21,9 @@ on a Skype client running on the same machine as hubot. When you first
 launch hubot with the Skype adapter, Skype will prompt you to allow for
 API permission. You must allow this before the bot will work.
 
-### OSX note
+## OS Specific notes
+
+### OSX
 
 The current version of Skype4Py doesn't play nicely with the 64 bit version 
 of python on OSX and will immediately cause a segmentation fault. You may 
@@ -34,6 +36,13 @@ Ex:
 export VERSIONER_PYTHON_PREFER_32_BIT=yes
 ./hubot -a skype
 ```
+
+### Linux
+`HUBOT_SKYPE_TRANSPORT`
+If you would like to use a different transport type than the default (`x111) 
+you may set the `HUBOT_SKYPE_TRANSPORT` evnirontment variable.Currently supported 
+values are `x11` amd `dbus`. More information on 
+[module page](http://skype4py.sourceforge.net/doc/html/Skype4Py.api.posix-module.html).
 
 ## Contribute
 

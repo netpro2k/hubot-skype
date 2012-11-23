@@ -1,12 +1,13 @@
 {Robot, Adapter, TextMessage, EnterMessage, LeaveMessage, CatchAllMessage} = require "hubot"
+Path = require 'path'
 
 class SkypeAdapter extends Adapter
   send: (user, strings...) ->
     out = ""
     out = ("#{str}\n" for str in strings)
     json = JSON.stringify
-        room: user.room
-        message: out.join('')
+      room: user.room
+      message: out.join('')
     @skype.stdin.write json + '\n'
 
   reply: (user, strings...) ->
