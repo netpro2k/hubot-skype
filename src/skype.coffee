@@ -1,5 +1,4 @@
 {Robot, Adapter, TextMessage, EnterMessage, LeaveMessage, CatchAllMessage} = require "hubot"
-Path = require 'path'
 
 class SkypeAdapter extends Adapter
   send: (user, strings...) ->
