@@ -1,6 +1,6 @@
 {
   "name": "hubot-skype",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Dominick D'Aniello",
   "keywords": [
     "github hubot skype adapter"
@@ -17,14 +17,13 @@
     "url": "git://github.com/netpro2k/hubot-skype.git"
   },
   "dependencies": {
-    "hubot": ">=2.0.5"
+    "hubot": ">=2.3.4"
   },
   "devDependencies": {
-    "coffee-script": "1.1.3"
+    "coffee-script": ">=1.1.3"
   },
   "main": "./src/skype",
-  "engine": "node > 0.6.0 < 0.7.0",
   "engines": {
-    "node": "*"
+    "node": ">= 0.6"
   }
 }
