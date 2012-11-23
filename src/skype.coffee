@@ -1,8 +1,4 @@
-Readline = require 'readline'
-
-Robot   = require("hubot").Robot
-Adapter = require("hubot").Adapter
-{TextMessage,EnterMessage,LeaveMessage,CatchAllMessage} = require '../../../src/message'
+{Robot, Adapter, TextMessage, EnterMessage, LeaveMessage, CatchAllMessage} = require "hubot"
 
 class SkypeAdapter extends Adapter
   send: (user, strings...) ->
@@ -24,7 +20,7 @@ class SkypeAdapter extends Adapter
     if (process.platform == 'win32')
         py = 'C:/Python27/python.exe'
     else
-        py = './python'
+        py = 'python'
     @skype = require('child_process').spawn(py, [pyScriptPath])
     @skype.stdout.on 'data', (data) =>
         decoded = JSON.parse(data.toString())
