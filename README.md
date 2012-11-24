@@ -39,7 +39,7 @@ export VERSIONER_PYTHON_PREFER_32_BIT=yes
 
 ### Linux
 If you would like to use a different transport type than the default (`x11`) 
-you may set the `HUBOT_SKYPE_TRANSPORT` evnirontment variable.Currently 
+you may set the `HUBOT_SKYPE_TRANSPORT` environment variable. Currently 
 supported values are `x11` amd `dbus`. More information on
 [module page](http://skype4py.sourceforge.net/doc/html/Skype4Py.api.posix-module.html).
 
