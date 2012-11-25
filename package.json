@@ -16,9 +16,6 @@
     "type": "git",
     "url": "git://github.com/netpro2k/hubot-skype.git"
   },
-  "dependencies": {
-    "hubot": ">=2.3.4"
-  },
   "devDependencies": {
     "coffee-script": ">=1.1.3"
   },
