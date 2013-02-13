@@ -17,7 +17,7 @@ class SkypeAdapter extends Adapter
     stdin = process.openStdin()
     stdout = process.stdout
     pyScriptPath = __dirname+'/skype.py'
-    py = process.env.HUBOT_SKYPE_ADAPTER_PYTHON
+    py = process.env.HUBOT_SKYPE_PYTHON
     
     if (!py)
         if (process.platform == 'win32')
