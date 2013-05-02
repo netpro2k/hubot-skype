@@ -19,12 +19,14 @@ class SkypeAdapter extends Adapter
     pyScriptPath = __dirname+'/skype.py'
     if (process.platform == 'win32')
         py = 'C:/Python27/python.exe'
+    else if (process.platform == 'darwin')
+        py = __dirname+'/python32bit'
     else
         py = 'python'
     @skype = require('child_process').spawn(py, [pyScriptPath])
     @skype.stdout.on 'data', (data) =>
         decoded = JSON.parse(data.toString())
-        user = self.userForName decoded.user
+        user = @robot.brain.userForName decoded.user
         unless user?
             id = (new Date().getTime() / 1000).toString().replace('.','')
             user = self.userForId id
