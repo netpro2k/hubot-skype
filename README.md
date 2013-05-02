@@ -2,12 +2,13 @@
 
 ## Description
 
-This is the [Skype](http://skype.com) adapter for hubot that allows you 
-to communicate with hubot through Skype.
+This is the [Skype](http://skype.com) adapter for
+[hubot](http://hubot.github.com) that allows you to communicate with hubot
+through Skype.
 
 ## Installation
 
-* Add `hubot-skype` as a dependency in your hubot's `package.json` (use this repository url as the version)
+* Add `hubot-skype` as a dependency in your hubot's `package.json` (use this repository url `git://github.com/netpro2k/hubot-skype.git` as the version)
 * Install dependencies with `npm install`
 * Install Python dependency `Skype4py` with `pip` or `easy_install`
 * Log into a Skype client on the same machine you are running hubot
@@ -25,9 +26,13 @@ API permission. You must allow this before the bot will work.
 
 ### OSX
 
-The current version of Skype4Py doesn't play nicely with the 64 bit version 
-of python on OSX and will immediately cause a segmentation fault. You may 
-need to force python to run in 32 bit mode by setting the environment variable 
+The current version of Skype4Py doesn't play nicely with the 64 bit version
+of python on OSX and would immediately cause a segmentation fault, but a
+workaround has been established in this repo using the `arch` command (see
+`/src/python32bit` for details).
+
+If this built in workaround doesn't seem to work, you may need to force python
+to run in 32 bit mode by setting the environment variable 
 `VERSIONER_PYTHON_PREFER_32_BIT` to `true`
 
 Ex:

@@ -13,21 +13,22 @@ class SkypeAdapter extends Adapter
     @send user, strings...
 
   run: ->
-    self = @
     stdin = process.openStdin()
     stdout = process.stdout
     pyScriptPath = __dirname+'/skype.py'
     if (process.platform == 'win32')
         py = 'C:/Python27/python.exe'
+    else if (process.platform == 'darwin')
+        py = __dirname+'/python32bit'
     else
         py = 'python'
     @skype = require('child_process').spawn(py, [pyScriptPath])
     @skype.stdout.on 'data', (data) =>
         decoded = JSON.parse(data.toString())
-        user = self.userForName decoded.user
+        user = @robot.brain.userForName decoded.user
         unless user?
             id = (new Date().getTime() / 1000).toString().replace('.','')
-            user = self.userForId id
+            user = @robot.brain.userForId id
             user.name = decoded.user
         user.room = decoded.room
         return unless decoded.message
