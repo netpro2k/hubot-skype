@@ -13,7 +13,6 @@ class SkypeAdapter extends Adapter
     @send user, strings...
 
   run: ->
-    self = @
     stdin = process.openStdin()
     stdout = process.stdout
     pyScriptPath = __dirname+'/skype.py'
@@ -29,7 +28,7 @@ class SkypeAdapter extends Adapter
         user = @robot.brain.userForName decoded.user
         unless user?
             id = (new Date().getTime() / 1000).toString().replace('.','')
-            user = self.userForId id
+            user = @robot.brain.userForId id
             user.name = decoded.user
         user.room = decoded.room
         return unless decoded.message
