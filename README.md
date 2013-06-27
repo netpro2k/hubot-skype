@@ -25,9 +25,10 @@ API permission. You must allow this before the bot will work.
 
 ### OSX
 
-The current version of Skype4Py doesn't play nicely with the 64 bit version 
-of python on OSX and will immediately cause a segmentation fault. You may 
-need to force python to run in 32 bit mode by setting the environment variable 
+The current version of Skype4Py doesn't play nicely with the 64 bit versions 
+of Python as Skype the client application has 32-bit API only. You 
+can work around this with:
+
 `VERSIONER_PYTHON_PREFER_32_BIT` to `true`
 
 Ex:
