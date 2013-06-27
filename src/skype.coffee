@@ -24,10 +24,10 @@ class SkypeAdapter extends Adapter
     @skype = require('child_process').spawn(py, [pyScriptPath])
     @skype.stdout.on 'data', (data) =>
         decoded = JSON.parse(data.toString())
-        user = self.userForName decoded.user
+        user = @robot.brain.userForName decoded.user
         unless user?
             id = (new Date().getTime() / 1000).toString().replace('.','')
-            user = self.userForId id
+            user = @robot.brain.userForId id
             user.name = decoded.user
         user.room = decoded.room
         return unless decoded.message
