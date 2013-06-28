@@ -17,10 +17,14 @@ class SkypeAdapter extends Adapter
     stdin = process.openStdin()
     stdout = process.stdout
     pyScriptPath = __dirname+'/skype.py'
-    if (process.platform == 'win32')
-        py = 'C:/Python27/python.exe'
-    else
-        py = 'python'
+    py = process.env.HUBOT_SKYPE_PYTHON
+    
+    if (!py)
+        if (process.platform == 'win32')
+            py = 'C:/Python27/python.exe'
+        else
+            py = 'python'
+
     @skype = require('child_process').spawn(py, [pyScriptPath])
     @skype.stdout.on 'data', (data) =>
         decoded = JSON.parse(data.toString())
