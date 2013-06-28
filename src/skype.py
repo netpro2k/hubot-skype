@@ -15,7 +15,7 @@ sudo pip install Skype4Py
 
 
 def on_message(message, status):
-    if status == Skype4Py.cmsReceived or status == Skype4Py.cmsSent:
+    if status == Skype4Py.cmsReceived:
         json_string = json.dumps({
             'user': message.Sender.Handle,
             'message': message.Body,
