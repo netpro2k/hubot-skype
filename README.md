@@ -23,6 +23,15 @@ API permission. You must allow this before the bot will work.
 
 ## OS Specific notes
 
+### Windows
+
+On Windows, it's possible to communicate with Skype via native COM interface without installing Python
+(which is not preinstalled in this OS) but using [edge.js (.NET adapter for Node.js)](http://tjanczuk.github.io/edge/).
+
+So, if you don't have Python installed and target only Windows machines, you can try [Skype4COM adapter](https://github.com/RReverser/hubot-skype4com).
+
+Please not that you shouldn't use it if planning to run your script on other operating systems.
+
 ### OSX
 
 The current version of Skype4Py doesn't play nicely with the 64 bit versions 
