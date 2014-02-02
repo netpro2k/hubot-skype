@@ -47,6 +47,9 @@ class SkypeAdapter extends Adapter
     process.on "uncaughtException", (err) =>
       @robot.logger.error "#{err}"
 
+    process.on "exit", =>
+          @skype.kill()
+
     @emit "connected"
 
 exports.use = (robot) ->
