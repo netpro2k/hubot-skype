@@ -9,6 +9,9 @@ class SkypeAdapter extends Adapter
       message: out.join('')
     @skype.stdin.write json + '\n'
 
+  emote: (user, strings...) ->
+    @send user, strings.map((str) -> "/me #{str}")...
+
   reply: (user, strings...) ->
     @send user, strings...
 
