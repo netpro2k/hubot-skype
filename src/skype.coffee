@@ -16,15 +16,17 @@ class SkypeAdapter extends Adapter
     @send user, strings...
 
   run: ->
-    self = @
     stdin = process.openStdin()
     stdout = process.stdout
     pyScriptPath = __dirname+'/skype.py'
+    
     py = process.env.HUBOT_SKYPE_PYTHON
     
     if (!py)
         if (process.platform == 'win32')
             py = 'C:/Python27/python.exe'
+        else if (process.platform == 'darwin')
+            py = __dirname+'/python32bit'
         else
             py = 'python'
 
