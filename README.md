@@ -1,4 +1,8 @@
-# Hubot Skype Adapter
+# WARNING
+
+#### Microsoft [has stated](http://blogs.skype.com/2013/11/06/feature-evolution-and-support-for-the-skype-desktop-api/) that they will be dropping support for the Skype desktop API. This adapter will likely stop working in the very near future (If it hasn't already... this change was slated for December 2013). 
+
+The adapter was always a hack at best, if you are looking to set up a bot for your company or community I would _HIGHLY_ recommend using a network that better supports scripting such as [Campfire](https://github.com/github/hubot/blob/master/docs/adapters/campfire.md) or [IRC](https://github.com/nandub/hubot-irc).
 
 ## Description
 
