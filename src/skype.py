@@ -2,6 +2,7 @@
 import sys
 import json
 import os
+from time import sleep
 try:
     import Skype4Py
 except ImportError, e:
@@ -40,3 +41,4 @@ while True:
         c.SendMessage(decoded['message'])
     except:
         continue
+    sleep(1)
