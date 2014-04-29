@@ -2,6 +2,7 @@
 import sys
 import json
 import os
+from time import sleep
 try:
     import Skype4Py
 except ImportError, e:
@@ -15,7 +16,7 @@ sudo pip install Skype4Py
 
 
 def on_message(message, status):
-    if status == Skype4Py.cmsReceived:
+    if s.CurrentUser.Handle != message.Sender.Handle and status == Skype4Py.cmsReceived:
         json_string = json.dumps({
             'user': message.Sender.Handle,
             'message': message.Body,
@@ -40,3 +41,4 @@ while True:
         c.SendMessage(decoded['message'])
     except:
         continue
+    sleep(1)
